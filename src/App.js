@@ -27,4 +27,15 @@ class App extends Component {
   }
 }
 
+class Content extends React.Component {
+  render() {
+    return (
+      <div>
+        <button onClick={this.props.updateStateProp}>Click</button>
+        <h3>{this.props.myDataProp}</h3>
+      </div>
+    );
+  }
+}
+
 export default App;
