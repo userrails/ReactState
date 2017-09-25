@@ -1,41 +1,35 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-class App extends Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      data: 'Initial data'
+      data: ''
     }
 
     this.updateState = this.updateState.bind(this);
-  };
+    this.clearInput = this.clearInput.bind(this);
+  }
 
-  updateState() {
-    this.setState({data: 'Data updated ...'})
+  updateState(e) {
+    this.setState({data: e.target.value })
+  }
+
+  clearInput() {
+    this.setState({data: ''});
+    ReactDOM.findDOMNode(this.refs.myInput).focus();
   }
 
   render() {
-    return (
+    return(
       <div>
-        <button onClick={this.updateState}>CLICK</button>
+        <input value={this.state.data} onChange={this.updateState} ref="myInput"></input>
+        <button onClick={this.clearInput}>CLEAR</button>
         <h4>{this.state.data}</h4>
-      </div>   
-    );
-  }
-}
-
-class Content extends React.Component {
-  render() {
-    return (
-      <div>
-        <button onClick={this.props.updateStateProp}>Click</button>
-        <h3>{this.props.myDataProp}</h3>
       </div>
     );
   }
 }
-
 export default App;
